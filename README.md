@@ -2,20 +2,21 @@
 Lightweight yarn docker image on alpine with gcloud & npm installation on build
 
 ## NodeJS
-version: 16.13.1
+version: 20.9.0
 
 ## NPM
-version: 8.3.0
+version: 10.2.3
 
 ## Yarn
-version: 1.22.17
+version: 1.22.19
 
 ## gcloud
-Google Cloud SDK 388.0.0  
-bq 2.0.74  
-core 2022.05.27  
-gsutil 5.10  
-gke-gcloud-auth-plugin 0.2.0  
+Google Cloud SDK 496.0.0
+bq 2.1.9
+bundled-python3-unix 3.11.9
+core 2024.10.04
+gcloud-crc32c 1.0.0
+gsutil 5.30
 
 # How to use
 set envs:
