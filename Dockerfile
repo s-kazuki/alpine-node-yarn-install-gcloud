@@ -1,4 +1,4 @@
-FROM skazuki/alpine-node:16
+FROM skazuki/alpine-node:20
 
 LABEL maintainer="S-Kazuki<contact@revoneo.com>"
 
@@ -12,14 +12,14 @@ ENV PATH=$PATH:/root/google-cloud-sdk/bin
 WORKDIR $APP_ROOT
 
 RUN apk -Uuv add bash curl python3 \
-&& curl -sSL https://sdk.cloud.google.com | bash \
-&& apk del bash curl \
-&& rm /var/cache/apk/*
+  && curl -sSL https://sdk.cloud.google.com | bash \
+  && apk del bash curl \
+  && rm /var/cache/apk/*
 
 ONBUILD COPY package.json ${APP_ROOT}/
 ONBUILD COPY yarn.lock ${APP_ROOT}/
 ONBUILD COPY ${GCP_KEY_FILE} ${GCP_KEY_PATH}
 
 ONBUILD RUN yarn install --frozen-lockfile --ignore-optional \
-&& gcloud auth activate-service-account ${GCP_ACCOUNT} --key-file=${GCP_KEY_PATH} --project ${GCP_PROJECT}
+  && gcloud auth activate-service-account ${GCP_ACCOUNT} --key-file=${GCP_KEY_PATH} --project ${GCP_PROJECT}
 CMD ["yarn", "start"]
